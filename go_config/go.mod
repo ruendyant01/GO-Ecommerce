@@ -1,4 +1,4 @@
-module go_config
+module github.com/ruendyant01/GO-Ecommerce/go_config
 
 go 1.26.3
 
