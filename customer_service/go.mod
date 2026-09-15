@@ -1,6 +1,6 @@
 module customer_service
 
-go 1.26
+go 1.26.3
 
 require (
 	github.com/bytedance/gopkg v0.1.3 // indirect
@@ -30,6 +30,7 @@ require (
 	github.com/pelletier/go-toml/v2 v2.2.4 // indirect
 	github.com/quic-go/qpack v0.6.0 // indirect
 	github.com/quic-go/quic-go v0.59.0 // indirect
+	github.com/ruendyant01/GO-Ecommerce/go_config v0.0.0-20260910145538-f61a151f323c // indirect
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	github.com/ugorji/go/codec v1.3.1 // indirect
 	go.mongodb.org/mongo-driver/v2 v2.5.0 // indirect
