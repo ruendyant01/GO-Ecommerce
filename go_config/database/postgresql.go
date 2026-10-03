@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"time"
 
+	_ "github.com/lib/pq"
 	"github.com/ruendyant01/GO-Ecommerce/go_config/config"
 )
 
