@@ -1,8 +1,7 @@
-﻿package config
+package config
 
 import (
 	"log"
-	"os"
 
 	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/viper"
@@ -11,27 +10,25 @@ import (
 type ViperConfig struct{}
 
 func (v ViperConfig) Build() {
-	//TODO implement me
-	var configFilePath string
-	viper.SetConfigFile("config")
-	if configFilePath == "" {
-		_, err := os.Stat(configFilePath)
-		if err != nil {
-			log.Fatalf("Errpr when reading stat : %s", err)
-		}
-		viper.AddConfigPath(configFilePath)
-	}
+	viper.SetConfigName("config")
+	viper.SetConfigType("yml")
+
 	viper.AddConfigPath(".")
 	viper.AddConfigPath("$HOME/.config")
 	viper.AddConfigPath("/etc/config")
+
 	viper.AutomaticEnv()
-	viper.SetConfigType("yml")
+
 	if err := viper.ReadInConfig(); err != nil {
-		log.Fatalf("Error reading config file : %s", err)
-		viper.OnConfigChange(func(in fsnotify.Event) {
-			log.Printf("Config file changed : %s", in.Name)
-		})
+		log.Fatalf("Error reading config file: %s", err)
 	}
+
+	log.Printf("Using config file: %s", viper.ConfigFileUsed())
+
+	viper.OnConfigChange(func(e fsnotify.Event) {
+		log.Printf("Config file changed: %s", e.Name)
+	})
+
 	viper.WatchConfig()
 }
 
