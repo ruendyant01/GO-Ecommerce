@@ -1,10 +1,11 @@
-﻿package database
+package database
 
 import (
 	"database/sql"
 	"fmt"
-	"go_config/config"
 	"time"
+
+	"github.com/ruendyant01/GO-Ecommerce/go_config/config"
 )
 
 type Postgresql struct {

@@ -1,10 +1,11 @@
-﻿package database
+package database
 
 import (
 	"errors"
 	"fmt"
-	"go_config/utils"
 	"time"
+
+	utils "github.com/ruendyant01/GO-Ecommerce/go_config/utils"
 )
 
 type Options struct {
