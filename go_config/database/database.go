@@ -29,7 +29,10 @@ type Database interface {
 }
 
 func BuildDNS(options Options) (string, error) {
-	handleError := func(msg string) (string, error) { return "", errors.New(msg) }
+	handleError := func(msg string) (string, error) {
+		return "", errors.New(msg)
+	}
+
 	if utils.IsBlank(options.Host) {
 		return handleError("host is blank")
 	}
@@ -42,17 +45,16 @@ func BuildDNS(options Options) (string, error) {
 	if utils.IsBlank(options.Password) {
 		return handleError("password is blank")
 	}
-	if options.Port < 0 {
-		return handleError("port is blank")
+	if options.Port <= 0 {
+		return handleError("port is invalid")
 	}
 
-	if utils.IsBlank(options.Protocol) {
-		options.Protocol = "tcp"
-	}
-
-	if utils.IsBlank(options.Param) {
-		options.Param = "parseTime=true"
-	}
-
-	return fmt.Sprintf("%s:%s@%s(%s:%d)/%s?%s", options.Username, options.Password, options.Protocol, options.Host, options.Port, options.DatabaseName, options.Param), nil
+	return fmt.Sprintf(
+		"host=%s port=%d user=%s password=%s dbname=%s sslmode=disable",
+		options.Host,
+		options.Port,
+		options.Username,
+		options.Password,
+		options.DatabaseName,
+	), nil
 }
